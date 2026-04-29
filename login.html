@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Train Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div style="font-size: 50px; color: var(--primary-color); margin-bottom: 10px;">🚂</div>
+            
+            <h2>نظام إدارة وجدولة القطارات</h2>
+            <p style="color: #666; margin-bottom: 30px;">Authorized Personnel Only</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" name="username" placeholder="Enter Username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" placeholder="********" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userRole">الدخول بصلاحية:</label>
+                    <select id="userRole" name="userRole">
+                        <option value="staff">موظف (Staff)</option>
+                        <option value="admin">مدير النظام (Admin)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">دخول للنظام</button>
+            </form>
+
+            <div style="margin-top: 20px; font-size: 12px; color: #888;">
+                Train Schedule & Reservation Management System &copy; 2026
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <script>
+        // Form submission handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent standard page refresh
+            
+            const selectedRole = document.getElementById('userRole').value;
+            
+            // Execute the login logic defined in script.js
+            if (typeof handleLogin === "function") {
+                handleLogin(selectedRole);
+            } else {
+                // Fallback mechanism in case script.js fails to load
+                localStorage.setItem('userRole', selectedRole);
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>
