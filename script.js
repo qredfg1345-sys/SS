@@ -1,48 +1,27 @@
 /**
- * Real-time Synchronization and Role Management Script
- * Handles login redirection and UI adjustments based on user roles (Admin/Staff)
+ * Role-Based Access Control and Page Logic
  */
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Retrieve the user role from browser's local storage
+    // Check user role from browser storage
     const userRole = localStorage.getItem('userRole'); 
     
-    // Select all elements that should only be visible to administrators
-    const adminOnlyElements = document.querySelectorAll('.admin-only');
+    // Select elements intended only for Administrators [cite: 47]
+    const adminElements = document.querySelectorAll('.admin-only');
     
-    // Authorization Check: Hide admin features if the user is a Staff member
     if (userRole !== 'admin') {
-        adminOnlyElements.forEach(element => {
-            element.style.display = 'none'; // Apply CSS to hide restricted actions
-        });
+        // Hide admin-specific features for Staff users
+        adminElements.forEach(el => el.style.display = 'none');
     }
-
-    /* * Firebase Real-time Listener (Conceptual Example)
-     * This function ensures that any data changes in Firestore reflect immediately in the UI.
-     * Use this with "onSnapshot" to sync between Admin and Staff.
-     */
-    /*
-    function startRealTimeSync(db) {
-        onSnapshot(collection(db, 'schedules'), (snapshot) => {
-            snapshot.docChanges().forEach((change) => {
-                if (change.type === "removed") {
-                    console.log("A schedule was deleted by Admin. Removing from Staff view...");
-                    document.getElementById(change.doc.id).remove();
-                }
-            });
-        });
-    }
-    */
 });
 
 /**
- * Function to handle user login and store session data
- * @param {string} role - The selected user role (admin or staff)
+ * Handle Login redirection and Role storage
+ * @param {string} role - Selected role from the form
  */
 function handleLogin(role) {
-    // Persist the user role for the current session [cite: 47]
-    localStorage.setItem('userRole', role);
+    localStorage.setItem('userRole', role); // Store for future pages
+    alert("Welcome! Logging in as: " + role);
     
-    // Redirect to the dashboard page after successful role assignment
-    window.location.href = 'dashboard.html';
+    // In your real project, change this to your dashboard file name
+    // window.location.href = 'dashboard.html'; 
 }
