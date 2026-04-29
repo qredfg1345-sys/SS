@@ -2,47 +2,37 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - نظام إدارة القطارات</title>
-    
-    <link rel="stylesheet" href="style.css">
+    <title>Login - Train System</title>
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 
     <div class="login-container">
         <div class="login-card">
-            <h2 style="color: var(--primary-color);">نظام إدارة وجدولة القطارات</h2>
-            <p style="color: #666;">سجل دخولك للمتابعة</p>
-
+            <h2>نظام إدارة وجدولة القطارات</h2>
             <form id="loginForm">
                 <div class="form-group">
                     <label>اسم المستخدم</label>
-                    <input type="text" id="username" placeholder="اسم المستخدم" required>
-                </div>
-                <div class="form-group">
-                    <label>كلمة المرور</label>
-                    <input type="password" id="password" placeholder="********" required>
+                    <input type="text" id="username" required>
                 </div>
                 <div class="form-group">
                     <label>الدخول كـ:</label>
                     <select id="userRole">
-                        <option value="staff">موظف (Staff) [cite: 47]</option>
-                        <option value="admin">مدير (Admin) [cite: 47]</option>
+                        <option value="staff">موظف (Staff)</option>
+                        <option value="admin">مدير (Admin)</option>
                     </select>
                 </div>
-                <button type="submit" class="btn-primary">دخول للنظام</button>
+                <button type="submit" class="btn-primary">دخول</button>
             </form>
         </div>
     </div>
 
     <script src="script.js"></script>
-    
     <script>
-        // Form Logic
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const role = document.getElementById('userRole').value;
-            handleLogin(role); // Function from script.js
+            handleLogin(role); // This function must exist in script.js
         });
     </script>
 </body>
